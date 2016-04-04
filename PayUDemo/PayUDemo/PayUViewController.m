@@ -56,9 +56,6 @@
     strMIHPayID = [strHash substringToIndex:20];
     NSLog(@"tnx1 id %@",strMIHPayID);
     
-//    NSString *key = @"JBZaLc";
-//    NSString* salt = @"GQs7yium";
-    
     NSString *key = @"gtKFFx";
     NSString* salt = @"eCwWELxi";
     
@@ -67,9 +64,6 @@
     NSString *firstname = Payee_Name;
     NSString *email = @"umeshjavastar@gmail.com";
     NSString *phone = @"9598322632";
-//    NSString *surl = @"https://dl.dropboxusercontent.com/s/dtnvwz5p4uymjvg/success.html";
-//    NSString *furl = @"https://dl.dropboxusercontent.com/s/z69y7fupciqzr7x/furlWithParams.html";
-    
 //     NSString *serviceprovider = @"payu_paisa";
     
     
@@ -129,10 +123,6 @@
     if (web_view_PayU.isLoading)
         return;
     NSURL *requestURL = [[web_view_PayU request] URL];
-    
-//    NSLog(@"requestURL=%@",requestURL);
-    
-//    NSURL *requestURL = [[_webviewPaymentPage request] URL];
     NSLog(@"WebView finished loading with requestURL: %@",requestURL);
     NSString *getStringFromUrl = [NSString stringWithFormat:@"%@",requestURL];
     if ([self containsString:getStringFromUrl :Success_URL]) {
@@ -147,97 +137,9 @@
 }
 
 
-// -(void)viewWillAppear:(BOOL)animated {
-// [super viewWillAppear:YES];
-// [self setTitle:@"Make A Payment"];
-// [self initPayment];
-// }
-//
-// - (void)viewDidLoad {
-// [super viewDidLoad];
-// activityIndicatorView = [[UIActivityIndicatorView alloc] init];
-// activityIndicatorView.center = self.view.center;
-// [activityIndicatorView setColor:[UIColor blackColor]];
-// [self.view addSubview:activityIndicatorView];
-// }
 
-//-(void)initPayment {
-//    int i = arc4random() % 9999999999;
-//    NSString *strHash = [self createSHA512:[NSString stringWithFormat:@"%d%@",i,[NSDate date]]];// Generatehash512(rnd.ToString() + DateTime.Now);
-//    NSString *txnid1 = [strHash substringToIndex:20];
-//    strMIHPayID = txnid1;
-//    NSString *key = Merchant_Key;
-//    NSString *amount =[[NSUserDefaults standardUserDefaults]
-//                       stringForKey:@"orderprice"];
-//    
-//    //NSString *amount = Paid_Amount;
-//    NSString *productInfo = Product_Info;
-//    NSString *firstname = Payee_Name;
-//    NSString *email = [NSString stringWithFormat:@"suraj%d@yopmail.com",i];
-//    
-//    //ADD A fake mail For Payment for testing purpose
-//    
-//    
-//    // Generated a fake mail id for testing
-//    NSString *phone = @"9762159571";
-//    NSString *serviceprovider = @"payu_paisa";
-//    
-//    NSString *hashValue = [NSString stringWithFormat:@"%@|%@|%@|%@|%@|%@|||||||||||%@",key,txnid1,amount,productInfo,firstname,email,Salt];
-//    NSString *hash = [self createSHA512:hashValue];
-//    NSDictionary *parameters = [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:txnid1,key,amount,productInfo,firstname,email,phone,Success_URL,Failure_URL,hash,serviceprovider
-//                                                                    , nil] forKeys:[NSArray arrayWithObjects:@"txnid",@"key",@"amount",@"productinfo",@"firstname",@"email",@"phone",@"surl",@"furl",@"hash",@"service_provider", nil]];
-//    NSLog(@"%@",parameters);
-//    __block NSString *post = @"";
-//    [parameters enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
-//        if ([post isEqualToString:@""]) {
-//            post = [NSString stringWithFormat:@"%@=%@",key,obj];
-//        } else {
-//            post = [NSString stringWithFormat:@"%@&%@=%@",post,key,obj];
-//        }
-//    }];
-//    NSData *postData = [post dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
-//    NSString *postLength = [NSString stringWithFormat:@"%lu",(unsigned long)[postData length]];
-//    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
-//    [request setURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/_payment",Base_URL]]];
-//    [request setHTTPMethod:@"POST"];
-//    [request setValue:postLength forHTTPHeaderField:@"Content-Length"];
-//    [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Current-Type"];
-//    [request setHTTPBody:postData];
-//    [_webviewPaymentPage loadRequest:request];
-//    [activityIndicatorView startAnimating];
-//}
-// -(NSString *)createSHA512:(NSString *)string {
-// const char *cstr = [string cStringUsingEncoding:NSUTF8StringEncoding];
-// NSData *data = [NSData dataWithBytes:cstr length:string.length];
-// uint8_t digest[CC_SHA512_DIGEST_LENGTH];
-// CC_SHA512(data.bytes, (CC_LONG)data.length, digest);
-// NSMutableString* output = [NSMutableString  stringWithCapacity:CC_SHA512_DIGEST_LENGTH * 2];
-// for(int i = 0; i < CC_SHA512_DIGEST_LENGTH; i++) {
-// [output appendFormat:@"%02x", digest[i]];
-// }
-// return output;
-// }
  #pragma UIWebView - Delegate Methods
-// -(void)webViewDidStartLoad:(UIWebView *)webView {
-// NSLog(@"WebView started loading");
-// }
-//-(void)webViewDidFinishLoad:(UIWebView *)webView {
-//    [activityIndicatorView stopAnimating];
-//    if (webView.isLoading) {
-//        return;
-//    }
-//    NSURL *requestURL = [[_webviewPaymentPage request] URL];
-//    NSLog(@"WebView finished loading with requestURL: %@",requestURL);
-//    NSString *getStringFromUrl = [NSString stringWithFormat:@"%@",requestURL];
-//    if ([self containsString:getStringFromUrl :Success_URL]) {
-//        [self performSelector:@selector(delayedDidFinish:) withObject:getStringFromUrl afterDelay:0.0];
-//    } else if ([self containsString:getStringFromUrl :Failure_URL]) {
-//        // FAILURE ALERT
-//        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Sorry !!!" message:@"Your transaction failed. Please try again!" delegate:self cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
-//        alert.tag = 1;
-//        [alert show];
-//    }
-//}
+
 -(void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error {
 //    [activityIndicatorView stopAnimating];
     NSURL *requestURL = [[web_view_PayU request] URL];
